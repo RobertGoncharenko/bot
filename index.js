@@ -51,7 +51,7 @@ bot.on("message", async (msg) => {
          setTimeout(async () => {
             await bot.sendMessage(
                chatId,
-               "Вся информация будет в этом чатеchatId,"
+               "Вся информация будет в этом чате"
             );
          }, 3000);
       } catch (e) {
@@ -67,7 +67,10 @@ app.post('/web-data', async (req, res) => {
          type: 'article',
          id: queryId,
          title: 'Успешная покупка',
-         input_message_content: {message_text: 'Поздравляю с покупкой на '+totalPrice+'₽'},
+         input_message_content: {message_text: `
+         Поздравляю с покупкой на ${totalPrice}₽,
+         ${products.map(item => item.title.join(', '))}
+         `},
       });
       return res.status(200).json({});
    } catch (e) {
